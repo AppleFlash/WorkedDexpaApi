@@ -249,7 +249,11 @@ namespace Dexpa.Core.Services
             var waitingClientList = new List<WaitingClientPoint>();
             var orderPointsList = new List<OrderPoint>();
             orders = orders.OrderBy(o => o.DepartureDate).ToList();
-            driverPoints = driverPoints.OrderBy(p => p.Timestamp).ToList();
+            if (driverPoints != null)
+                driverPoints = driverPoints.OrderBy(p => p.Timestamp).ToList();
+            else
+                driverPoints = new List<DriverTrackPoint>();
+            
             int count = 0;
             for (int i = count; i < orders.Count-1; i++)
             {
